@@ -4,7 +4,9 @@ import org.it.discovery.monolith.domain.Customer;
 
 import java.util.HashMap;
 import java.util.Map;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public class InMemoryCustomerRepository implements CustomerRepository {
 
     private final Map<Integer, Customer> customers = new HashMap<>();
