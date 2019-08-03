@@ -101,7 +101,6 @@
         <module>eureka-server</module>
         <module>gateway</module>
         <module>consul</module>
-        <module>monolith</module>
         <module>vault</module>
     </modules>
 
