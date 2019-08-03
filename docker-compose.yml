@@ -4,6 +4,7 @@ services:
   book:
     environment:
       - CONFIG_SERVER_URI=config-server:8088
+      - EUREKA_SERVER_URI=eureka-server:8888
     expose:
       - 8080
     ports:
@@ -41,6 +42,16 @@ services:
     build:
       context: config-server
       dockerfile: server.dockerfile
+    networks:
+      - network1
+  eureka-server:
+    expose:
+      - 9888
+    ports:
+      - 9888:8888
+    build:
+      context: eureka-server
+      dockerfile: eureka-server.dockerfile
     networks:
       - network1
 networks:
