@@ -1,11 +1,11 @@
-package org.it.discovery.order.service;
+package org.it.discovery.delivery.service;
 
 import java.time.LocalDateTime;
 import lombok.AllArgsConstructor;
-import org.it.discovery.order.domain.Order;
-import org.it.discovery.order.domain.OrderItem;
-import org.it.discovery.order.repository.CustomerRepository;
-import org.it.discovery.order.repository.OrderRepository;
+import org.it.discovery.delivery.domain.Order;
+import org.it.discovery.delivery.domain.OrderItem;
+import org.it.discovery.delivery.repository.CustomerRepository;
+import org.it.discovery.delivery.repository.OrderRepository;
 import org.springframework.stereotype.Service;
 
 @Service

@@ -1,7 +1,7 @@
-package org.it.discovery.order.controller;
+package org.it.discovery.delivery.controller;
 
 import lombok.AllArgsConstructor;
-import org.it.discovery.order.service.DeliveryService;
+import org.it.discovery.delivery.service.DeliveryService;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController

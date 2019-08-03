@@ -1,4 +1,4 @@
-package org.it.discovery.order.domain;
+package org.it.discovery.delivery.domain;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;

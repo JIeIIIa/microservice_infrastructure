@@ -1,7 +1,7 @@
-package org.it.discovery.order.repository;
+package org.it.discovery.delivery.repository;
 
 
-import org.it.discovery.order.domain.Order;
+import org.it.discovery.delivery.domain.Order;
 
 public interface OrderRepository {
 

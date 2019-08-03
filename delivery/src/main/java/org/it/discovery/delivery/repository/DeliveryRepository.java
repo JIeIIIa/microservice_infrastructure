@@ -1,6 +1,6 @@
-package org.it.discovery.order.repository;
+package org.it.discovery.delivery.repository;
 
-import org.it.discovery.order.domain.Item;
+import org.it.discovery.delivery.domain.Item;
 
 public interface DeliveryRepository {
 

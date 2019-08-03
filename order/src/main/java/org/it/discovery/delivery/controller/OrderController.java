@@ -1,7 +1,7 @@
-package org.it.discovery.order.controller;
+package org.it.discovery.delivery.controller;
 
 import lombok.AllArgsConstructor;
-import org.it.discovery.order.service.OrderService;
+import org.it.discovery.delivery.service.OrderService;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;

@@ -1,8 +1,8 @@
-package org.it.discovery.order.repository;
+package org.it.discovery.delivery.repository;
 
 import java.util.HashMap;
 import java.util.Map;
-import org.it.discovery.order.domain.Customer;
+import org.it.discovery.delivery.domain.Customer;
 import org.springframework.stereotype.Repository;
 
 @Repository
