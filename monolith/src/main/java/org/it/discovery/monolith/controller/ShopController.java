@@ -27,25 +27,6 @@ public class ShopController {
         return LIBRARY_NAME;
     }
 
-    @GetMapping("/book")
-    public List<Book> getBooks() {
-        return bookRepository.getBooks();
-    }
-
-    @GetMapping("/book/{id}")
-    public Book getBook(@PathVariable("id") int id) {
-        return bookRepository.findBookById(id);
-    }
-
-    @PostMapping("/book")
-    public void saveBook(@RequestBody Book book) {
-        bookRepository.saveBook(book);
-    }
-
-    public void updateBook(Book book) {
-        bookRepository.saveBook(book);
-    }
-
     public int createOrder(int bookId, int number, int customerId) {
         return orderService.createOrder(bookId, number, customerId).getId();
     }
