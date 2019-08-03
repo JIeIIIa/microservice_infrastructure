@@ -34,4 +34,9 @@ public class OrderController {
     orderService.cancel(orderId);
   }
 
+  @PutMapping("/order/{id}/delivered")
+  public void delivery(@PathVariable("id") int id) {
+    orderService.delivery(id);
+  }
+
 }

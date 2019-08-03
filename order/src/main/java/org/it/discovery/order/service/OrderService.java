@@ -49,4 +49,11 @@ public class OrderService {
     }
   }
 
+  public void delivery(int orderId) {
+    Order order = orderRepository.findById(orderId);
+    if (order != null) {
+      order.setDelivered(true);
+      orderRepository.save(order);
+    }
+  }
 }
