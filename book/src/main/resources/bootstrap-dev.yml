@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: library-client
+  cloud:
+    config:
+      uri: http://${CONFIG_SERVER_URI:localhost:9000}
+  data:
+    mongodb:
+      database: ${mongo.db}
