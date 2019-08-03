@@ -1,14 +1,44 @@
 version: '3.6'
 
 services:
-  config-server:
+  book:
     expose:
-      - 9000
+      - 8080
+    ports:
+      - 8080:8080
     build:
-      context: config-server
-      dockerfile: server.dockerfile
+      context: book
+      dockerfile: book.dockerfile
     networks:
       - network1
+  order:
+    expose:
+      - 8080
+    ports:
+      - 8085:8080
+    build:
+      context: order
+      dockerfile: order.dockerfile
+    networks:
+      - network1
+  delivery:
+    expose:
+      - 8080
+    ports:
+      - 8090:8080
+    build:
+      context: delivery
+      dockerfile: delivery.dockerfile
+    networks:
+      - network1
+#  config-server:
+#    expose:
+#      - 9000
+#    build:
+#      context: config-server
+#      dockerfile: server.dockerfile
+#    networks:
+#      - network1
 networks:
   network1:
     driver: bridge
