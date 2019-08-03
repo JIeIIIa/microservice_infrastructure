@@ -94,6 +94,9 @@
     </build>
 
     <modules>
+        <module>book</module>
+        <module>order</module>
+        <module>delivery</module>
         <module>config-server</module>
         <module>eureka-server</module>
         <module>gateway</module>
