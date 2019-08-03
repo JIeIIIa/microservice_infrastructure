@@ -5,17 +5,24 @@ import org.it.discovery.monolith.domain.OrderItem;
 import org.it.discovery.monolith.repository.BookRepository;
 import org.it.discovery.monolith.repository.CustomerRepository;
 import org.it.discovery.monolith.repository.OrderRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 
+@Service
 public class OrderService {
 
+    @Autowired
     private OrderRepository orderRepository;
 
+    @Autowired
     private BookRepository bookRepository;
 
+    @Autowired
     private DeliveryService deliveryService;
 
+    @Autowired
     private CustomerRepository customerRepository;
 
     public void deliver(int orderId) {

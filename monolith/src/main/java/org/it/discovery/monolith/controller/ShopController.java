@@ -3,16 +3,21 @@ package org.it.discovery.monolith.controller;
 import org.it.discovery.monolith.domain.Book;
 import org.it.discovery.monolith.repository.BookRepository;
 import org.it.discovery.monolith.service.OrderService;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@RestController
+@RequestMapping("/")
 public class ShopController {
 
     private String libraryName = "IT-Discovery library";
 
+    @Autowired
     private BookRepository bookRepository;
 
+    @Autowired
     private OrderService orderService;
 
     @GetMapping("/library")
@@ -20,15 +25,18 @@ public class ShopController {
         return libraryName;
     }
 
+    @GetMapping("book")
     public List<Book> getBooks() {
         return bookRepository.getBooks();
     }
 
-    public Book getBook(int id) {
+    @GetMapping("book/{id}")
+    public Book getBook(@PathVariable int id) {
         return bookRepository.findBookById(id);
     }
 
-    public void saveBook(Book book) {
+    @GetMapping
+    public void saveBook(@RequestBody Book book) {
         bookRepository.saveBook(book);
     }
 

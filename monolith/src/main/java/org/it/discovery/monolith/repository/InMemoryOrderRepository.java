@@ -1,10 +1,12 @@
 package org.it.discovery.monolith.repository;
 
 import org.it.discovery.monolith.domain.Order;
+import org.springframework.stereotype.Repository;
 
 import java.util.HashMap;
 import java.util.Map;
 
+@Repository
 public class InMemoryOrderRepository implements OrderRepository {
 
     private final Map<Integer, Order> orders = new HashMap<>();
