@@ -5,6 +5,7 @@ services:
     environment:
       - CONFIG_SERVER_URI=http://config-server:8088
       - EUREKA_SERVER_URI=http://eureka-server:8888/eureka/
+      - ZIPKIN_SERVER_URI=http://zipkin:9411
     expose:
       - 8080
     ports:
@@ -19,6 +20,7 @@ services:
   order:
     environment:
       - EUREKA_SERVER_URI=http://eureka-server:8888/eureka/
+      - ZIPKIN_SERVER_URI=http://zipkin:9411
     expose:
       - 8080
     ports:
@@ -95,6 +97,12 @@ services:
       dockerfile: gateway.dockerfile
     depends_on:
       - eureka-server
+    networks:
+      - network1
+  zipkin:
+    image: openzipkin/zipkin
+    ports:
+      - "9411:9411"
     networks:
       - network1
 networks:

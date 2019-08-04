@@ -12,6 +12,8 @@ spring:
       discovery:
         service-id: config-server
         enabled: true
+  zipkin:
+    base-url: ${ZIPKIN_SERVER_URI:http://localhost:9411}
 eureka:
   client:
     serviceUrl:
