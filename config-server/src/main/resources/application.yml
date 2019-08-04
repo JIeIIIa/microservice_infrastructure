@@ -6,7 +6,13 @@ spring:
           uri: https://github.com/JIeIIIa/microservice_infra
           searchPaths: configurations
           default-label: dev
-eureka:
-  client:
-    serviceUrl:
-      defaultZone: ${EUREKA_SERVER_URI:http://localhost:8888/eureka}
+    zookeeper:
+      discovery:
+        enabled: true
+        register: true
+      connect-string: ${ZOOKEEPER_SERVER_URI:http://localhost:2181}
+      max-retries: 5
+#eureka:
+#  client:
+#    serviceUrl:
+#      defaultZone: ${EUREKA_SERVER_URI:http://localhost:8888/eureka}

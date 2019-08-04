@@ -4,7 +4,8 @@ services:
   book:
     environment:
       - CONFIG_SERVER_URI=http://config-server:8088
-      - EUREKA_SERVER_URI=http://eureka-server:8888/eureka/
+#      - EUREKA_SERVER_URI=http://eureka-server:8888/eureka/
+      - ZOOKEEPER_SERVER_URI=http://zookeeper-server:2181
     expose:
       - 8080
     ports:
@@ -13,12 +14,14 @@ services:
       context: book
       dockerfile: book.dockerfile
     depends_on:
-      - eureka-server
+#      - eureka-server
+      - zookeeper-server
     networks:
       - network1
   order:
     environment:
-      - EUREKA_SERVER_URI=http://eureka-server:8888/eureka/
+#      - EUREKA_SERVER_URI=http://eureka-server:8888/eureka/
+      - ZOOKEEPER_SERVER_URI=http://zookeeper-server:2181
     expose:
       - 8080
     ports:
@@ -27,7 +30,8 @@ services:
       context: order
       dockerfile: order.dockerfile
     depends_on:
-      - eureka-server
+#      - eureka-server
+      - zookeeper-server
     networks:
       - network1
   delivery:
@@ -39,13 +43,15 @@ services:
       context: delivery
       dockerfile: delivery.dockerfile
     depends_on:
-      - eureka-server
+#      - eureka-server
+      - zookeeper-server
     networks:
       - network1
   config-server:
     environment:
       - SERVER_PORT=8888
-      - EUREKA_SERVER_URI=http://eureka-server:8888/eureka/,http://eureka-server-2:8890/eureka/
+#      - EUREKA_SERVER_URI=http://eureka-server:8888/eureka/,http://eureka-server-2:8890/eureka/
+      - ZOOKEEPER_SERVER_URI=http://zookeeper-server:2181
     expose:
       - 9000
     ports:
@@ -54,22 +60,23 @@ services:
       context: config-server
       dockerfile: server.dockerfile
     depends_on:
-      - eureka-server
+#      - eureka-server
+      - zookeeper-server
     networks:
       - network1
-  eureka-server:
-    environment:
-      - SERVER_PORT=8888
-      - EUREKA_CLIENT_DEFAULT_ZONE=http://eureka-server:8888/eureka/,http://eureka-server-2:8890/eureka/
-    expose:
-      - 9888
-    ports:
-      - 9888:8888
-    build:
-      context: eureka-server
-      dockerfile: eureka-server.dockerfile
-    networks:
-      - network1
+#  eureka-server:
+#    environment:
+#      - SERVER_PORT=8888
+#      - EUREKA_CLIENT_DEFAULT_ZONE=http://eureka-server:8888/eureka/,http://eureka-server-2:8890/eureka/
+#    expose:
+#      - 9888
+#    ports:
+#      - 9888:8888
+#    build:
+#      context: eureka-server
+#      dockerfile: eureka-server.dockerfile
+#    networks:
+#      - network1
 #  eureka-server-2:
 #    environment:
 #      - SERVER_PORT=8890
@@ -83,9 +90,18 @@ services:
 #      dockerfile: eureka-server.dockerfile
 #    networks:
 #      - network1
+  zookeeper-server:
+    image: zookeeper
+    ports:
+      - "2181:2181"
+      - "2888:2888"
+      - "3888:3888"
+    networks:
+      - network1
   gateway:
     environment:
-      - EUREKA_SERVER_URI=http://eureka-server:8888/eureka/
+#      - EUREKA_SERVER_URI=http://eureka-server:8888/eureka/
+      - ZOOKEEPER_SERVER_URI=http://zookeeper-server:2181
     expose:
       - 9090
     ports:
@@ -94,7 +110,8 @@ services:
       context: gateway
       dockerfile: gateway.dockerfile
     depends_on:
-      - eureka-server
+#      - eureka-server
+      - zookeeper-server
     networks:
       - network1
 networks:

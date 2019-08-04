@@ -9,10 +9,16 @@ spring:
         locator:
           enabled: true
           lower-case-service-id: true
-eureka:
-  client:
-    serviceUrl:
-      defaultZone: ${EUREKA_SERVER_URI:http://localhost:8888/eureka}
+    zookeeper:
+      discovery:
+        enabled: true
+        register: true
+      connect-string: ${ZOOKEEPER_SERVER_URI:http://localhost:2181}
+      max-retries: 5
+#eureka:
+#  client:
+#    serviceUrl:
+#      defaultZone: ${EUREKA_SERVER_URI:http://localhost:8888/eureka}
 management:
   endpoint:
     gateway:
