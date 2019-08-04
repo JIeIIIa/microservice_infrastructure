@@ -5,3 +5,13 @@ eureka:
   client:
     serviceUrl:
       defaultZone: ${EUREKA_SERVER_URI:http://localhost:8888/eureka}
+management:
+  endpoints:
+    web:
+      exposure:
+        include: hystrix.stream,info,health
+hystrix:
+  command:
+    default:
+      circuitBreaker:
+        enabled: true
