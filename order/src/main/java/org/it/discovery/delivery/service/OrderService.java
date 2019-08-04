@@ -3,6 +3,7 @@ package org.it.discovery.delivery.service;
 import java.time.LocalDateTime;
 import java.util.List;
 import lombok.AllArgsConstructor;
+import org.it.discovery.book.controller.BookClient;
 import org.it.discovery.delivery.domain.Order;
 import org.it.discovery.delivery.domain.OrderItem;
 import org.it.discovery.delivery.repository.CustomerRepository;
@@ -15,6 +16,8 @@ import org.springframework.web.client.RestTemplate;
 public class OrderService {
 
   private final RestTemplate restTemplate;
+
+  private final BookClient bookClient;
 
   private final OrderRepository orderRepository;
 
@@ -47,7 +50,12 @@ public class OrderService {
   }
 
   private Double fetchPrice(int bookId) {
-    System.out.println("fetching price...");
+    System.out.println("fetching price with Feign...");
+    return bookClient.getBookPrice(bookId);
+  }
+
+  private Double fetchPriceOld(int bookId) {
+    System.out.println("fetching price with restTemplate...");
     return restTemplate.getForObject("http://library-client/api/v2/book/{id}/price", Double.class, bookId);
   }
 

@@ -1,18 +1,16 @@
-package org.it.discovery.book.dto.v1;
+package org.it.discovery.book.dto.v2;
 
-import java.util.ArrayList;
-import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.it.discovery.book.domain.Hit;
-import org.it.discovery.book.domain.Person;
+import lombok.ToString;
 
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
+@ToString
 public class BookDTO {
     private int id;
 
@@ -24,7 +22,5 @@ public class BookDTO {
 
     private double price;
 
-    private Person author;
-
-    private List<Hit> hits = new ArrayList<>();
+    private PersonDTO author;
 }

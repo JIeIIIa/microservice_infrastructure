@@ -94,6 +94,7 @@
     </build>
 
     <modules>
+        <module>book-client</module>
         <module>book</module>
         <module>order</module>
         <module>delivery</module>

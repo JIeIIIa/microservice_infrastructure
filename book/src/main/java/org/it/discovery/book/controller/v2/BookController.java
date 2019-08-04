@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import lombok.AllArgsConstructor;
 import org.dozer.DozerBeanMapper;
+import org.it.discovery.book.controller.BookClient;
 import org.it.discovery.book.domain.Book;
 import org.it.discovery.book.dto.v2.BookDTO;
 import org.it.discovery.book.repository.BookRepository;
@@ -15,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController("bookController_v2")
 @AllArgsConstructor
-public class BookController {
+public class BookController implements BookClient {
 
   private final BookRepository bookRepository;
 
@@ -36,10 +37,8 @@ public class BookController {
         BookDTO.class);
   }
 
-  @GetMapping("/api/v2/book/{id}/price")
-  public double getBookPrice(@PathVariable("id") int id) {
-    return
-        bookRepository.findBookById(id).getPrice();
+  public double getBookPrice(int id) {
+    return bookRepository.findBookById(id).getPrice();
   }
 
   @PostMapping("/api/v2/book")

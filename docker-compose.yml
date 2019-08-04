@@ -12,6 +12,8 @@ services:
     build:
       context: book
       dockerfile: book.dockerfile
+    depends_on:
+      - eureka-server
     networks:
       - network1
   order:
@@ -24,6 +26,8 @@ services:
     build:
       context: order
       dockerfile: order.dockerfile
+    depends_on:
+      - eureka-server
     networks:
       - network1
   delivery:
@@ -34,6 +38,8 @@ services:
     build:
       context: delivery
       dockerfile: delivery.dockerfile
+    depends_on:
+      - eureka-server
     networks:
       - network1
   config-server:
@@ -47,6 +53,8 @@ services:
     build:
       context: config-server
       dockerfile: server.dockerfile
+    depends_on:
+      - eureka-server
     networks:
       - network1
   eureka-server:
@@ -62,19 +70,19 @@ services:
       dockerfile: eureka-server.dockerfile
     networks:
       - network1
-  eureka-server-2:
-    environment:
-      - SERVER_PORT=8890
-      - EUREKA_CLIENT_DEFAULT_ZONE=http://eureka-server:8888/eureka/,http://eureka-server-2:8890/eureka/
-    expose:
-      - 9890
-    ports:
-      - 9890:8890
-    build:
-      context: eureka-server
-      dockerfile: eureka-server.dockerfile
-    networks:
-      - network1
+#  eureka-server-2:
+#    environment:
+#      - SERVER_PORT=8890
+#      - EUREKA_CLIENT_DEFAULT_ZONE=http://eureka-server:8888/eureka/,http://eureka-server-2:8890/eureka/
+#    expose:
+#      - 9890
+#    ports:
+#      - 9890:8890
+#    build:
+#      context: eureka-server
+#      dockerfile: eureka-server.dockerfile
+#    networks:
+#      - network1
 networks:
   network1:
     driver: bridge
