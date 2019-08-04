@@ -6,3 +6,7 @@ spring:
           uri: https://github.com/JIeIIIa/microservice_infra
           searchPaths: configurations
           default-label: dev
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: ${EUREKA_SERVER_URI:http://localhost:8888/eureka}

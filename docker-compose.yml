@@ -3,8 +3,8 @@ version: '3.6'
 services:
   book:
     environment:
-      - CONFIG_SERVER_URI=config-server:8088
-      - EUREKA_SERVER_URI=eureka-server:8888
+      - CONFIG_SERVER_URI=http://config-server:8088
+      - EUREKA_SERVER_URI=http://eureka-server:8888/eureka
     expose:
       - 8080
     ports:
@@ -35,6 +35,8 @@ services:
     networks:
       - network1
   config-server:
+    environment:
+      - EUREKA_SERVER_URI=http://eureka-server:8888/eureka
     expose:
       - 9000
     ports:
@@ -45,6 +47,9 @@ services:
     networks:
       - network1
   eureka-server:
+    environment:
+      - SERVER_PORT=8888
+      - EUREKA_CLIENT_DEFAULT_ZONE=http://eureka-server:8888/eureka
     expose:
       - 9888
     ports:
