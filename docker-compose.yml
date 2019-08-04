@@ -83,6 +83,20 @@ services:
 #      dockerfile: eureka-server.dockerfile
 #    networks:
 #      - network1
+  gateway:
+    environment:
+      - EUREKA_SERVER_URI=http://eureka-server:8888/eureka/
+    expose:
+      - 9090
+    ports:
+      - 9090:9090
+    build:
+      context: gateway
+      dockerfile: gateway.dockerfile
+    depends_on:
+      - eureka-server
+    networks:
+      - network1
 networks:
   network1:
     driver: bridge
