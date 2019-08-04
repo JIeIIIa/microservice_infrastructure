@@ -1,0 +1,7 @@
+spring:
+  application:
+    name: order-server
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: ${EUREKA_SERVER_URI:http://localhost:8888/eureka}

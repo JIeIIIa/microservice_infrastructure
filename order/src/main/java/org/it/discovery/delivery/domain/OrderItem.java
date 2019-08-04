@@ -11,4 +11,6 @@ public class OrderItem {
     private final int bookId;
 
     private final int number;
+
+    private final double price;
 }

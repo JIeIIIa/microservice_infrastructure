@@ -26,6 +26,7 @@ public class InMemoryBookRepository implements BookRepository {
         book.setName("Thinking in Java");
         book.setPages(1150);
         book.setYear(2006);
+        book.setPrice(321.12);
         books.put(book.getId(), book);
     }
 

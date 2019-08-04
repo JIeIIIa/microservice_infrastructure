@@ -15,6 +15,8 @@ services:
     networks:
       - network1
   order:
+    environment:
+      - EUREKA_SERVER_URI=http://eureka-server:8888/eureka/
     expose:
       - 8080
     ports:

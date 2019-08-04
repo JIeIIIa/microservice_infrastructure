@@ -36,6 +36,12 @@ public class BookController {
         BookDTO.class);
   }
 
+  @GetMapping("/api/v2/book/{id}/price")
+  public double getBookPrice(@PathVariable("id") int id) {
+    return
+        bookRepository.findBookById(id).getPrice();
+  }
+
   @PostMapping("/api/v2/book")
   public void saveBook(@RequestBody Book book) {
     bookRepository.saveBook(book);
