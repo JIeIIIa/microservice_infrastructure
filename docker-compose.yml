@@ -4,7 +4,7 @@ services:
   book:
     environment:
       - CONFIG_SERVER_URI=http://config-server:8088
-      - EUREKA_SERVER_URI=http://eureka-server:8888/eureka
+      - EUREKA_SERVER_URI=http://eureka-server:8888/eureka/
     expose:
       - 8080
     ports:
@@ -36,7 +36,8 @@ services:
       - network1
   config-server:
     environment:
-      - EUREKA_SERVER_URI=http://eureka-server:8888/eureka
+      - SERVER_PORT=8888
+      - EUREKA_SERVER_URI=http://eureka-server:8888/eureka/,http://eureka-server-2:8890/eureka/
     expose:
       - 9000
     ports:
@@ -49,11 +50,24 @@ services:
   eureka-server:
     environment:
       - SERVER_PORT=8888
-      - EUREKA_CLIENT_DEFAULT_ZONE=http://eureka-server:8888/eureka
+      - EUREKA_CLIENT_DEFAULT_ZONE=http://eureka-server:8888/eureka/,http://eureka-server-2:8890/eureka/
     expose:
       - 9888
     ports:
       - 9888:8888
+    build:
+      context: eureka-server
+      dockerfile: eureka-server.dockerfile
+    networks:
+      - network1
+  eureka-server-2:
+    environment:
+      - SERVER_PORT=8890
+      - EUREKA_CLIENT_DEFAULT_ZONE=http://eureka-server:8888/eureka/,http://eureka-server-2:8890/eureka/
+    expose:
+      - 9890
+    ports:
+      - 9890:8890
     build:
       context: eureka-server
       dockerfile: eureka-server.dockerfile
